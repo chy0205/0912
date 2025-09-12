@@ -362,7 +362,7 @@
                     const options = cells[2] && cells[2].v ? String(cells[2].v).split(',').map(item => item.trim()) : [];
                     const answerValue = cells[3] && cells[3].v !== undefined ? String(cells[3].v) : '';
                     const answer = answerValue ? answerValue.split(',').map(item => item.trim()) : [];
-                    const score = cells[4] && cells[4].v ? parseInt(cells[4].v) : 0;
+                    const score = cells[4] && cells[4].v ? parseFloat(cells[4].v) : 0; // 修改這裡，使用 parseFloat
                     const imageUrl = cells[5] && cells[5].v ? cells[5].v : '';
                     
                     if (question && ['single', 'multiple', 'fill'].includes(type) && answer.length > 0) {
@@ -519,7 +519,7 @@
             document.getElementById('quiz-type-result').innerText = `隨堂 + ${selectedQuizType}`;
             document.getElementById('group-result').innerText = selectedGroup;
             document.getElementById('name-result').innerText = selectedName;
-            document.getElementById('score').innerText = userScore;
+            document.getElementById('score').innerText = userScore.toFixed(1); // 修改這裡，顯示一位小數
             
             const wrongQuestionsElement = document.getElementById('wrong-questions');
             if (wrongQuestions.length > 0) {
